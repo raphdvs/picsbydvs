@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raphaël — Photographe sport et shootings</title>
+  <meta name="description" content="Raphaël, photographe : football, événements, studio et restaurant.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <!-- Partage sur les réseaux. [À COMPLÉTER : remplacer DOMAINE-A-COMPLETER par votre domaine, ex. www.mon-site.fr] -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raphaël, photographe">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Raphaël — Photographe sport et shootings">
+  <meta property="og:description" content="Raphaël, photographe : football, événements, studio et restaurant.">
+  <meta property="og:url" content="https://DOMAINE-A-COMPLETER/">
+  <meta property="og:image" content="https://DOMAINE-A-COMPLETER/images/soa/DSC05408.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Raphaël — Photographe sport et shootings">
+  <meta name="twitter:description" content="Raphaël, photographe : football, événements, studio et restaurant.">
+  <meta name="twitter:image" content="https://DOMAINE-A-COMPLETER/images/soa/DSC05408.jpg">
+</head>
+<body data-page="accueil">
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <section class="hero hero-photo" data-fond="images/soa/DSC05408.jpg" style="--img:url('images/soa/DSC05408.jpg')">
+      <p class="kicker">Photographe · Méry-sur-Oise</p>
+      <h1>Du bord du terrain<br>au studio.</h1>
+      <p class="lead">Football, événements, studio et restaurant : des images qui racontent l'instant.</p>
+      <a class="btn btn-light" href="rendez-vous.html">Demander un devis</a>
+    </section>
+
+    <section class="section" aria-labelledby="selection-titre">
+      <p class="kicker">Sélection</p>
+      <h2 id="selection-titre">Quelques images</h2>
+      <!-- Rempli automatiquement avec les photos "selection: true" de medias.js -->
+      <div id="selection"></div>
+    </section>
+
+    <section class="split" aria-label="Mes deux univers">
+      <a class="world world-sport" href="sport.html" style="--img:url('https://picsum.photos/seed/foot-home/1000/800')">
+        <p class="kicker">Univers 1</p>
+        <h2>Sport</h2>
+        <p>Matchs, tournois, portraits de joueurs. Le football au plus près de l'action.</p>
+        <span class="more">Voir les photos sport →</span>
+      </a>
+      <a class="world world-pro" href="shootings.html" style="--img:url('https://picsum.photos/seed/studio-home/1000/800')">
+        <p class="kicker">Univers 2</p>
+        <h2>Shootings</h2>
+        <p>Anniversaires, mariages, studio, restaurants. Des images soignées pour vos moments et votre activité.</p>
+        <span class="more">Voir les shootings →</span>
+      </a>
+    </section>
+
+    <section class="section clients" aria-labelledby="clients-titre">
+      <h2 id="clients-titre">Ils m'ont fait confiance</h2>
+      <!-- Rempli automatiquement avec la liste CLIENTS de medias.js -->
+      <div class="clients-liste" data-clients></div>
+    </section>
+
+    <section class="section about">
+      <img src="https://picsum.photos/seed/portrait-raph/700/875" alt="Portrait de Raphaël" loading="lazy" decoding="async">
+      <div>
+        <p class="kicker">À propos</p>
+        <h2>Raphaël</h2>
+        <p>Passionné de photo et de football, j'ai commencé au bord des terrains avant d'élargir mon regard aux événements, au studio et à la restauration.</p>
+        <p>[Ajoute ici ton parcours, ton matériel, tes clubs ou clients partenaires.]</p>
+        <a class="btn" href="rendez-vous.html">Prendre rendez-vous</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="medias.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

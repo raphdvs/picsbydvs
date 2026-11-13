@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sport — Raphaël, photographe</title>
+  <meta name="description" content="Photographie de football, futsal et hockey : matchs, Media Day, présentations d'équipement.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <!-- Partage sur les réseaux. [À COMPLÉTER : remplacer DOMAINE-A-COMPLETER par votre domaine] -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raphaël, photographe">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Sport — Raphaël, photographe">
+  <meta property="og:description" content="Photographie de football, futsal et hockey : matchs, Media Day, présentations d'équipement.">
+  <meta property="og:url" content="https://DOMAINE-A-COMPLETER/sport.html">
+  <meta property="og:image" content="https://DOMAINE-A-COMPLETER/images/soa/DSC03241.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sport — Raphaël, photographe">
+  <meta name="twitter:description" content="Photographie de football, futsal et hockey : matchs, Media Day, présentations d'équipement.">
+  <meta name="twitter:image" content="https://DOMAINE-A-COMPLETER/images/soa/DSC03241.jpg">
+</head>
+<body data-page="sport" class="theme-sport">
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <section class="hero" style="--img:url('https://picsum.photos/seed/foot-hero/1600/900')">
+      <p class="kicker">Football · Futsal · Hockey</p>
+      <h1>Au cœur<br>de l'action.</h1>
+      <p class="lead">Chaque match a son moment décisif. Mon travail : être là quand il arrive.</p>
+      <a class="btn" href="#equipes-titre">Voir les équipes</a>
+    </section>
+
+    <section class="section">
+      <h2 id="equipes-titre">Mes équipes</h2>
+      <p class="lead">Choisis un club pour voir ses photos et vidéos.</p>
+      <div id="equipes"></div>
+    </section>
+
+    <section class="section clients" aria-labelledby="clients-titre">
+      <h2 id="clients-titre">Ils m'ont fait confiance</h2>
+      <!-- Rempli automatiquement avec la liste CLIENTS de medias.js -->
+      <div class="clients-liste" data-clients></div>
+    </section>
+
+    <section class="section">
+      <h2>Ce que je couvre</h2>
+      <!-- Les prix viennent de TARIFS dans medias.js -->
+      <div class="cards">
+        <div class="card"><h3>Matchs</h3><p>Actions, célébrations, ambiance des tribunes.</p><p class="prix" data-tarif="match"></p></div>
+        <div class="card"><h3>Media Day</h3><p>Portraits de joueurs et contenus pour les réseaux du club.</p><p class="prix" data-tarif="media-day"></p></div>
+        <div class="card"><h3>Présentation équipement</h3><p>Nouveaux maillots et tenues mis en valeur, en photo comme en vidéo.</p><p class="prix" data-tarif="presentation-equipement"></p></div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <h2>Un match à couvrir ?</h2>
+      <p>Réserve un créneau pour en parler, je t'envoie un devis ensuite.</p>
+      <a class="btn" href="rendez-vous.html">Prendre rendez-vous</a>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="medias.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

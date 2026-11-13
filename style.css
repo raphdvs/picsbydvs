@@ -1,0 +1,358 @@
+/* =====================================================
+   STYLE.CSS — Raphaël, photographe
+   Sommaire :
+    1. Charte graphique et thèmes
+    2. Base (typographie, liens, boutons)
+    3. En-tête et menu
+    4. Bandeaux d'ouverture (hero)
+    5. Accueil (deux univers, à propos)
+    6. Page Sport (navigation, cartes d'équipe)
+    7. Page Équipe (fil d'Ariane)
+    8. Filtres et galerie en mosaïque
+    9. Visionneuse (lightbox)
+   10. Cartes de prestations et prix
+   11. Bande « Ils m'ont fait confiance »
+   12. Bandeau d'appel au devis
+   13. Page Rendez-vous
+   14. Mentions légales
+   15. Pied de page
+   16. Mobile (≤ 800 px)
+   ===================================================== */
+
+
+/* ===== 1. Charte graphique et thèmes ===== */
+:root {
+  --bleu: #034C8C;
+  --marine: #123A5B;
+  --ciel: #69AEE1;
+  --pale: #D0E6FB;
+  --blanc: #FFFFFF;
+
+  /* Thème clair par défaut (accueil, shootings, rendez-vous, mentions légales) */
+  --bg: var(--blanc);
+  --text: var(--marine);
+  --soft: var(--pale);
+  --accent: var(--bleu);
+  --on-accent: var(--blanc);
+}
+
+/* Thème sombre : pages Sport et Équipe */
+body.theme-sport {
+  --bg: var(--marine);
+  --text: var(--blanc);
+  --soft: var(--bleu);
+  --accent: var(--ciel);
+  --on-accent: var(--marine);
+}
+
+
+/* ===== 2. Base ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif; font-weight: 400; line-height: 1.65;
+  background: var(--bg); color: var(--text);
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 {
+  font-family: 'Anton', sans-serif; font-weight: 400;
+  text-transform: uppercase; letter-spacing: .02em; line-height: 1.1;
+}
+h1 { font-size: clamp(2.6rem, 7vw, 5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 14px; }
+h3 { font-size: 1.3rem; margin-bottom: 8px; }
+:focus-visible { outline: 3px solid var(--ciel); outline-offset: 3px; }
+
+.section { padding: 80px 6vw; max-width: 1300px; margin: 0 auto; }
+.lead { font-size: 1.1rem; font-weight: 300; max-width: 620px; margin: 18px 0 30px; }
+.kicker {
+  font-size: .8rem; font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; margin-bottom: 14px; color: var(--accent);
+}
+
+.btn {
+  display: inline-block; padding: 14px 30px; border-radius: 8px;
+  background: var(--accent); color: var(--on-accent);
+  font-weight: 600; text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, .2); }
+.btn-light { background: var(--blanc); color: var(--marine); }
+
+/* Ancres : le titre ne passe pas sous l'en-tête fixe */
+#equipes-titre, .sport-bloc { scroll-margin-top: 90px; }
+
+
+/* ===== 3. En-tête et menu ===== */
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 6vw; background: var(--marine); color: var(--blanc);
+}
+.brand {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+  font-weight: 700; font-style: italic; font-size: 1.4rem;
+}
+.brand img { width: 40px; height: 40px; }
+.site-header nav { display: flex; align-items: center; gap: 28px; }
+.site-header nav a { text-decoration: none; font-size: .95rem; font-weight: 600; }
+.site-header nav a:not(.btn) { padding: 6px 0; border-bottom: 2px solid transparent; }
+.site-header nav a:not(.btn):hover,
+.site-header nav a[aria-current="page"] { border-color: var(--ciel); }
+.site-header .btn { padding: 10px 20px; background: var(--ciel); color: var(--marine); }
+.burger { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
+.burger span { display: block; width: 26px; height: 3px; margin: 5px 0; background: var(--blanc); border-radius: 2px; }
+
+
+/* ===== 4. Bandeaux d'ouverture (hero) ===== */
+.hero {
+  padding: 110px 6vw 120px; color: var(--blanc);
+  background: linear-gradient(135deg, var(--marine) 0%, var(--bleu) 45%, var(--ciel) 100%);
+}
+.hero .kicker { color: var(--pale); }
+
+/* Accueil : photo plein cadre + voile sombre pour la lisibilité */
+.hero-photo {
+  background: linear-gradient(100deg, rgba(18, 58, 91, .92) 0%, rgba(18, 58, 91, .65) 55%, rgba(18, 58, 91, .35) 100%),
+              var(--img) center / cover;
+}
+
+/* Sport et Équipe : photo sombre + coupe en diagonale (dégradé si pas de photo) */
+.theme-sport .hero {
+  background: linear-gradient(rgba(18, 58, 91, .55), rgba(18, 58, 91, .95)),
+              var(--img, linear-gradient(135deg, var(--marine), var(--bleu))) center / cover;
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  padding-bottom: 160px;
+}
+
+/* Shootings : clair et aéré */
+.hero-light { background: var(--pale); color: var(--marine); }
+.hero-light .kicker { color: var(--bleu); }
+
+
+/* ===== 5. Accueil ===== */
+/* Les deux univers */
+.split { display: grid; grid-template-columns: 1fr 1fr; }
+.world {
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
+  min-height: 440px; padding: 50px 6vw; text-decoration: none;
+  background-size: cover; background-position: center; transition: filter .3s;
+}
+.world:hover { filter: brightness(1.08); }
+.world p { max-width: 420px; margin-bottom: 20px; }
+.world .more { font-weight: 600; border-bottom: 2px solid currentColor; }
+.world-sport {
+  color: var(--blanc);
+  background-image: linear-gradient(rgba(18, 58, 91, .55), rgba(18, 58, 91, .95)), var(--img);
+}
+.world-pro {
+  color: var(--marine);
+  background-image: linear-gradient(rgba(208, 230, 251, .8), rgba(255, 255, 255, .95)), var(--img);
+}
+
+/* À propos */
+.about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 50px; align-items: center; }
+.about img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; }
+.about p { margin-bottom: 16px; }
+
+
+/* ===== 6. Page Sport ===== */
+/* Navigation par sport */
+.sport-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+.sport-nav a {
+  padding: 9px 22px; border-radius: 30px; border: 2px solid var(--soft);
+  text-decoration: none; font-weight: 600; font-size: .9rem; transition: border-color .2s;
+}
+.sport-nav a:hover { border-color: var(--accent); }
+.sport-bloc + .sport-bloc { margin-top: 60px; }
+
+/* Cartes d'équipe (dégradé si l'équipe n'a encore aucune photo) */
+.teams { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; margin-top: 20px; }
+.team {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 300px; padding: 24px; border-radius: 12px;
+  color: var(--blanc); text-decoration: none;
+  background: linear-gradient(transparent 30%, rgba(18, 58, 91, .95)),
+              var(--img, linear-gradient(135deg, var(--bleu), var(--ciel))) center / cover;
+  transition: transform .25s, box-shadow .25s;
+}
+.team:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0, 0, 0, .35); }
+.team h3 { font-size: 1.6rem; margin: 4px 0 6px; }
+.team-sport { font-size: .75rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--ciel); }
+.team-count { font-size: .85rem; opacity: .85; }
+
+
+/* ===== 7. Page Équipe ===== */
+.fil { font-size: .85rem; margin-bottom: 22px; }
+.fil a { color: var(--pale); }
+.fil span { opacity: .8; }
+
+
+/* ===== 8. Filtres et galerie en mosaïque ===== */
+.filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 30px; }
+.filters button {
+  padding: 9px 22px; border-radius: 30px; cursor: pointer;
+  background: transparent; color: var(--text); border: 2px solid var(--soft);
+  font: inherit; font-size: .9rem; font-weight: 600; transition: all .2s;
+}
+.filters button:hover { border-color: var(--accent); }
+.filters button.active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+/* Nombre de médias dans chaque bouton */
+.filters button small { margin-left: 4px; font-weight: 400; opacity: .65; }
+.filters button.active small { opacity: .9; }
+
+/* Mosaïque : 3 colonnes max, chaque photo garde ses proportions */
+.gallery { columns: 3 280px; column-gap: 14px; }
+.item {
+  position: relative; display: block; margin-bottom: 14px; break-inside: avoid;
+  overflow: hidden; border-radius: 8px; cursor: zoom-in; background: var(--soft);
+}
+.theme-pro .item { border-radius: 12px; }
+.item.hidden { display: none; }
+.item img { width: 100%; height: auto; transition: transform .5s; }
+.item:hover img { transform: scale(1.06); }
+.item video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* Légende sur la vignette */
+.item span {
+  position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 16px 14px;
+  background: linear-gradient(transparent, rgba(18, 58, 91, .9));
+  color: var(--blanc); font-size: .85rem; font-weight: 600;
+}
+.item span strong { display: block; font-size: .95rem; }
+
+/* Pastille « lecture » sur les vidéos */
+.item.is-video::after {
+  content: "▶"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(255, 255, 255, .9); color: var(--marine); font-size: 1.2rem;
+  pointer-events: none;
+}
+
+/* Message quand un filtre est vide */
+.vide { padding: 40px; text-align: center; border: 2px dashed var(--soft); border-radius: 12px; }
+
+
+/* ===== 9. Visionneuse (lightbox) ===== */
+.lightbox {
+  position: fixed; inset: 0; z-index: 100; display: none;
+  align-items: center; justify-content: center; padding: 60px 80px;
+  background: rgba(10, 25, 40, .96);
+}
+.lightbox.open { display: flex; }
+.lb-figure { display: flex; flex-direction: column; align-items: center; max-width: 100%; }
+.lb-media img, .lb-media video {
+  display: block; max-width: calc(100vw - 160px); max-height: calc(100vh - 150px);
+  object-fit: contain; border-radius: 6px;
+}
+.lb-legende {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+  width: 100%; min-height: 1.6em; margin-top: 12px; color: var(--blanc); font-size: .9rem;
+}
+.lb-legende strong { margin-right: 8px; }
+.lb-compteur { opacity: .7; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.lb-btn {
+  position: absolute; background: none; border: 0; border-radius: 8px;
+  color: var(--blanc); line-height: 1; cursor: pointer; transition: background .2s;
+}
+.lb-btn:hover { background: rgba(255, 255, 255, .12); }
+.lb-btn[hidden] { display: none; }
+.lb-close { top: 12px; right: 16px; padding: 4px 12px; font-size: 2.6rem; }
+.lb-prev, .lb-next { top: 50%; transform: translateY(-50%); padding: 10px 18px; font-size: 3.2rem; }
+.lb-prev { left: 10px; }
+.lb-next { right: 10px; }
+
+
+/* ===== 10. Cartes de prestations et prix ===== */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 30px; }
+.card { display: flex; flex-direction: column; padding: 30px; border-radius: 12px; background: var(--soft); }
+.card p { font-size: .95rem; }
+.card .prix { margin-top: auto; padding-top: 16px; font-weight: 600; font-size: 1rem; color: var(--accent); }
+.theme-sport .card .prix { color: var(--pale); }
+
+
+/* ===== 11. Bande « Ils m'ont fait confiance » ===== */
+.clients { padding-top: 40px; padding-bottom: 40px; }
+.clients-liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; margin-top: 20px; }
+.client {
+  display: flex; align-items: center; justify-content: center;
+  height: 84px; padding: 14px 22px; border-radius: 12px;
+  background: var(--blanc); color: var(--marine); border: 2px solid var(--pale);
+  font-size: .85rem; font-weight: 600; text-align: center; text-decoration: none;
+  transition: transform .2s, border-color .2s;
+}
+a.client:hover { transform: translateY(-2px); border-color: var(--ciel); }
+.client img { max-height: 56px; max-width: 140px; object-fit: contain; filter: grayscale(1); transition: filter .2s; }
+.client:hover img { filter: none; }
+
+
+/* ===== 12. Bandeau d'appel au devis ===== */
+.cta-band { padding: 70px 6vw; text-align: center; background: var(--soft); }
+.cta-band p { margin: 0 auto 26px; max-width: 520px; }
+
+
+/* ===== 13. Page Rendez-vous ===== */
+.steps {
+  list-style: none; counter-reset: step; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 36px 0 50px;
+}
+.steps li { counter-increment: step; padding: 26px; border-radius: 12px; background: var(--soft); }
+.steps li::before {
+  content: counter(step); display: block; margin-bottom: 6px;
+  font-family: 'Anton', sans-serif; font-size: 2.2rem; color: var(--accent);
+}
+/* Agenda Cal.com */
+.booking { min-height: 520px; width: 100%; overflow: auto; border-radius: 12px; }
+.booking-secours { padding: 40px 20px; text-align: center; border-radius: 12px; background: var(--soft); }
+.notice { padding: 40px; border: 2px dashed var(--ciel); border-radius: 12px; text-align: center; }
+.alt-contact { margin-top: 30px; }
+
+
+/* ===== 14. Mentions légales ===== */
+.legal { max-width: 860px; }
+.legal h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-top: 46px; }
+.legal h3 { font-size: 1.1rem; margin-top: 26px; }
+.legal p, .legal ul { margin-bottom: 12px; }
+.legal ul { padding-left: 20px; }
+.legal li { margin-bottom: 4px; }
+.legal a { color: var(--bleu); overflow-wrap: anywhere; }
+.legal-maj { margin-top: 40px; font-size: .85rem; opacity: .7; }
+
+
+/* ===== 15. Pied de page ===== */
+.site-footer {
+  padding: 30px 6vw; text-align: center; font-size: .85rem;
+  background: var(--marine); color: var(--blanc);
+  border-top: 1px solid rgba(255, 255, 255, .15);
+}
+.site-footer a { color: var(--ciel); }
+
+
+/* ===== 16. Mobile (≤ 800 px) ===== */
+@media (max-width: 800px) {
+  /* Menu burger */
+  .burger { display: block; }
+  .site-header nav {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; align-items: flex-start; gap: 18px;
+    padding: 24px 6vw; background: var(--marine);
+  }
+  .site-header nav.open { display: flex; }
+
+  /* Mise en page */
+  .split, .about { grid-template-columns: 1fr; }
+  .hero { padding: 80px 6vw 90px; }
+  .section { padding: 60px 6vw; }
+
+  /* Visionneuse : flèches en bas, image pleine largeur */
+  .lightbox { padding: 60px 10px 80px; }
+  .lb-media img, .lb-media video { max-width: calc(100vw - 20px); max-height: calc(100vh - 170px); }
+  .lb-legende { padding: 0 4px; }
+  .lb-prev, .lb-next {
+    top: auto; bottom: 14px; transform: none;
+    padding: 6px 20px; font-size: 2.4rem; background: rgba(255, 255, 255, .12);
+  }
+  .lb-prev { left: 14px; }
+  .lb-next { right: 14px; }
+}
