@@ -64,15 +64,33 @@
       <div class="clients-liste" data-clients></div>
     </section>
 
+    <section class="section avis-section" aria-labelledby="avis-titre">
+      <p class="kicker">Avis</p>
+      <h2 id="avis-titre">Ils en parlent</h2>
+      <!-- Rempli automatiquement avec la liste AVIS de medias.js (sport + shootings) -->
+      <div class="avis-liste" data-avis="tous"></div>
+    </section>
+
     <section class="section about">
+      <!-- [À COMPLÉTER : remplacer par ton portrait, ex. images/raphael.jpg] -->
       <img src="https://picsum.photos/seed/portrait-raph/700/875" alt="Portrait de Raphaël" loading="lazy" decoding="async">
       <div>
         <p class="kicker">À propos</p>
         <h2>Raphaël</h2>
         <p>Passionné de photo et de football, j'ai commencé au bord des terrains avant d'élargir mon regard aux événements, au studio et à la restauration.</p>
-        <p>[Ajoute ici ton parcours, ton matériel, tes clubs ou clients partenaires.]</p>
-        <a class="btn" href="rendez-vous.html">Prendre rendez-vous</a>
+        <div class="boutons">
+          <a class="btn" href="a-propos.html">En savoir plus</a>
+          <a class="btn btn-contour" href="rendez-vous.html">Prendre rendez-vous</a>
+        </div>
       </div>
+    </section>
+
+    <section class="section insta-section" aria-labelledby="insta-titre">
+      <p class="kicker">Instagram</p>
+      <h2 id="insta-titre">@picsbydvs</h2>
+      <!-- Rempli automatiquement avec la liste INSTAGRAM_POSTS de medias.js -->
+      <div class="insta-grille" data-instagram></div>
+      <a class="btn" data-instagram-lien href="https://instagram.com/picsbydvs" target="_blank" rel="noopener">Suivre @picsbydvs</a>
     </section>
   </main>
 

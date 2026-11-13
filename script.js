@@ -17,6 +17,7 @@ const links = [
   ["index.html", "Accueil", "accueil"],
   ["sport.html", "Sport", "sport"],
   ["shootings.html", "Shootings", "shootings"],
+  ["a-propos.html", "À propos", "a-propos"],
 ];
 
 document.getElementById("site-header").innerHTML = `
@@ -370,6 +371,44 @@ document.querySelectorAll("[data-tarif]").forEach(el => {
   else el.hidden = true;
 });
 
+// ===== Avis clients (AVIS dans medias.js) =====
+// data-avis="sport" | "shootings" | "tous"
+document.querySelectorAll("[data-avis]").forEach(liste => {
+  const univers = liste.dataset.avis;
+  const avis = (typeof AVIS !== "undefined" ? AVIS : [])
+    .filter(a => a.texte && (univers === "tous" || a.univers === univers));
+  if (!avis.length) { liste.closest("section").hidden = true; return; }
+  liste.innerHTML = avis.map(a => `
+    <figure class="avis">
+      <blockquote><p>${a.texte}</p></blockquote>
+      <figcaption><strong>${a.nom}</strong>${a.role ? `<span>${a.role}</span>` : ""}</figcaption>
+    </figure>`).join("");
+});
+
+// ===== Questions fréquentes (FAQ dans medias.js) =====
+// <details> : accordéon natif, accessible au clavier sans code supplémentaire
+document.querySelectorAll("[data-faq]").forEach(liste => {
+  const faq = (typeof FAQ !== "undefined" ? FAQ : []).filter(q => q.question);
+  if (!faq.length) { liste.closest("section").hidden = true; return; }
+  liste.innerHTML = faq.map(q => `
+    <details>
+      <summary>${q.question}</summary>
+      <p>${q.reponse}</p>
+    </details>`).join("");
+});
+
+// ===== Fil Instagram (INSTAGRAM_POSTS dans medias.js), 6 au maximum =====
+document.querySelectorAll("[data-instagram]").forEach(grille => {
+  const posts = (typeof INSTAGRAM_POSTS !== "undefined" ? INSTAGRAM_POSTS : [])
+    .filter(p => p.image).slice(0, 6);
+  if (!posts.length) { grille.hidden = true; return; }
+  grille.innerHTML = posts.map(p => `
+    <a href="${p.lien || INSTAGRAM}" target="_blank" rel="noopener">
+      <img src="${vignette(p.image)}" alt="${p.texte || "Publication Instagram de @picsbydvs"}" loading="lazy" decoding="async">
+    </a>`).join("");
+});
+document.querySelectorAll("[data-instagram-lien]").forEach(a => { a.href = INSTAGRAM; });
+
 // ===== Page Sport : liste des équipes =====
 const listeEquipes = document.getElementById("equipes");
 if (listeEquipes) {
@@ -476,6 +515,37 @@ if (galerieShootings) {
     filtres: filtresDepuis(CATEGORIES_SHOOTING),
     legende: categorieShooting,
     alt: altShooting
+  });
+}
+
+// ===== Apparition douce au défilement (fondu + légère montée) =====
+// Désactivée si la personne a demandé à réduire les animations sur son appareil.
+// Sans JavaScript, tout reste visible (la classe "anime" n'est jamais ajoutée).
+const animationsReduites = matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!animationsReduites && "IntersectionObserver" in window) {
+  document.documentElement.classList.add("anime");
+  const observateur = new IntersectionObserver((entrees, obs) => {
+    entrees.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      el.classList.add("visible");
+      obs.unobserve(el);
+      // Animation terminée : on rend à l'élément ses effets de survol habituels
+      setTimeout(() => {
+        el.classList.remove("apparition", "visible");
+        el.style.removeProperty("--delai");
+      }, 1000);
+    });
+  }, { rootMargin: "0px 0px -8% 0px" });
+
+  const cibles = document.querySelectorAll(
+    ".gallery .item, .team, .card, .avis, .insta-grille a, .steps li, .about img, .faq details, .client"
+  );
+  // Léger décalage entre éléments voisins (effet « cascade »)
+  cibles.forEach((el, i) => {
+    el.classList.add("apparition");
+    el.style.setProperty("--delai", `${(i % 4) * 80}ms`);
+    observateur.observe(el);
   });
 }
 

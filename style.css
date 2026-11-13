@@ -16,7 +16,11 @@
    13. Page Rendez-vous
    14. Mentions légales
    15. Pied de page
-   16. Mobile (≤ 800 px)
+   16. Avis clients
+   17. Questions fréquentes (accordéon)
+   18. Fil Instagram
+   19. Apparition au défilement
+   20. Mobile (≤ 800 px)
    ===================================================== */
 
 
@@ -79,6 +83,9 @@ h3 { font-size: 1.3rem; margin-bottom: 8px; }
 }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, .2); }
 .btn-light { background: var(--blanc); color: var(--marine); }
+/* Bouton secondaire : contour seulement */
+.btn-contour { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+.boutons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
 
 /* Ancres : le titre ne passe pas sous l'en-tête fixe */
 #equipes-titre, .sport-bloc { scroll-margin-top: 90px; }
@@ -169,18 +176,33 @@ h3 { font-size: 1.3rem; margin-bottom: 8px; }
 
 /* Cartes d'équipe (dégradé si l'équipe n'a encore aucune photo) */
 .teams { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; margin-top: 20px; }
+/* La photo (::before) et le voile (::after) sont des calques séparés,
+   pour pouvoir zoomer la photo seule au survol */
 .team {
+  position: relative; overflow: hidden; isolation: isolate;
   display: flex; flex-direction: column; justify-content: flex-end;
   min-height: 300px; padding: 24px; border-radius: 12px;
   color: var(--blanc); text-decoration: none;
-  background: linear-gradient(transparent 30%, rgba(18, 58, 91, .95)),
-              var(--img, linear-gradient(135deg, var(--bleu), var(--ciel))) center / cover;
   transition: transform .25s, box-shadow .25s;
 }
-.team:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0, 0, 0, .35); }
+.team::before, .team::after { content: ""; position: absolute; inset: 0; }
+.team::before {
+  z-index: -2;
+  background: var(--img, linear-gradient(135deg, var(--bleu), var(--ciel))) center / cover;
+  transition: transform .6s ease;
+}
+.team::after { z-index: -1; background: linear-gradient(transparent 30%, rgba(18, 58, 91, .95)); }
+.team:hover, .team:focus-visible { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0, 0, 0, .35); }
+.team:hover::before, .team:focus-visible::before { transform: scale(1.08); }
 .team h3 { font-size: 1.6rem; margin: 4px 0 6px; }
 .team-sport { font-size: .75rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--ciel); }
-.team-count { font-size: .85rem; opacity: .85; }
+.team-count { font-size: .85rem; opacity: .85; transition: opacity .3s, transform .3s; }
+/* Ordinateur (souris) : le nombre de photos apparaît au survol.
+   Sur téléphone il reste toujours visible, faute de survol possible. */
+@media (hover: hover) and (pointer: fine) {
+  .team-count { opacity: 0; transform: translateY(8px); }
+  .team:hover .team-count, .team:focus-visible .team-count { opacity: .9; transform: none; }
+}
 
 
 /* ===== 7. Page Équipe ===== */
@@ -329,7 +351,73 @@ a.client:hover { transform: translateY(-2px); border-color: var(--ciel); }
 .site-footer a { color: var(--ciel); }
 
 
-/* ===== 16. Mobile (≤ 800 px) ===== */
+/* ===== 16. Avis clients ===== */
+.avis-liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+.avis {
+  display: flex; flex-direction: column; gap: 18px;
+  padding: 30px; border-radius: 12px; background: var(--soft);
+}
+.avis blockquote { position: relative; padding-top: 34px; font-style: italic; font-size: 1rem; }
+/* Grand guillemet décoratif */
+.avis blockquote::before {
+  content: "“"; position: absolute; top: -14px; left: -4px;
+  font-family: 'Anton', sans-serif; font-style: normal; font-size: 4rem; line-height: 1; color: var(--accent);
+}
+.theme-sport .avis blockquote::before { color: var(--pale); }
+.avis figcaption { margin-top: auto; font-size: .9rem; }
+.avis figcaption strong { display: block; }
+.avis figcaption span { opacity: .75; }
+
+
+/* ===== 17. Questions fréquentes (accordéon) ===== */
+.faq { max-width: 860px; margin-top: 30px; }
+.faq details { border-bottom: 2px solid var(--soft); }
+.faq summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 20px;
+  padding: 20px 4px; cursor: pointer; list-style: none;
+  font-weight: 600; font-size: 1.05rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+/* Signe + qui pivote en × à l'ouverture */
+.faq summary::after {
+  content: "+"; flex-shrink: 0; font-size: 1.6rem; line-height: 1; color: var(--accent);
+  transition: transform .25s;
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq summary:hover { color: var(--accent); }
+.faq details p { padding: 0 4px 22px; max-width: 720px; }
+
+
+/* ===== 18. Fil Instagram ===== */
+.insta-section { text-align: center; }
+.insta-grille {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px;
+  margin: 30px 0;
+}
+.insta-grille a { display: block; overflow: hidden; border-radius: 8px; aspect-ratio: 1; background: var(--soft); }
+.insta-grille img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s, filter .3s; }
+.insta-grille a:hover img { transform: scale(1.06); filter: brightness(1.08); }
+.insta-grille[hidden] + .btn { margin-top: 16px; }
+
+
+/* ===== 19. Apparition au défilement ===== */
+/* La classe "anime" n'est ajoutée par script.js que si les animations sont autorisées */
+.anime .apparition {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .7s ease, transform .7s ease;
+  transition-delay: var(--delai, 0ms);
+}
+.anime .apparition.visible { opacity: 1; transform: none; }
+
+/* Animations réduites à la demande de l'appareil */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .team, .team::before, .team-count, .item img, .insta-grille img, .btn, .faq summary::after { transition: none; }
+  .team:hover::before, .item:hover img, .insta-grille a:hover img { transform: none; }
+}
+
+
+/* ===== 20. Mobile (≤ 800 px) ===== */
 @media (max-width: 800px) {
   /* Menu burger */
   .burger { display: block; }

@@ -1,6 +1,7 @@
 // =====================================================
 //  MEDIAS.JS : le seul fichier à modifier pour ajouter
-//  des équipes, des photos, des vidéos, des clients et des tarifs
+//  des équipes, des photos, des vidéos, des clients, des tarifs,
+//  des avis, des questions fréquentes et le fil Instagram
 // =====================================================
 
 // ----- Images optimisées (WebP) -----
@@ -124,4 +125,39 @@ const MEDIAS_SHOOTING = [
   { categorie: "anniversaire", src: "https://picsum.photos/seed/an2/1400/1400", titre: "" },
   { categorie: "studio", src: "https://picsum.photos/seed/st2/1000/1500", titre: "" },
   { categorie: "restaurant", src: "https://picsum.photos/seed/re2/1400/1400", titre: "" },
+];
+
+// ----- Avis clients -----
+// texte   : l'avis, mot pour mot (2 ou 3 phrases), avec l'accord de la personne
+// nom     : prénom + initiale, ou nom du club
+// role    : ex. "Président du RC Gonesse", "Mariage, juin 2025" ("" = rien d'affiché)
+// univers : "sport" (accueil + page Sport) ou "shootings" (accueil + page Shootings)
+// Liste vide → la section disparaît.
+const AVIS = [
+  { texte: "[À COMPLÉTER : avis d'un club]", nom: "[À COMPLÉTER : nom]", role: "[À COMPLÉTER : fonction, club]", univers: "sport" },
+  { texte: "[À COMPLÉTER : avis d'un club ou d'un joueur]", nom: "[À COMPLÉTER : nom]", role: "", univers: "sport" },
+  { texte: "[À COMPLÉTER : avis d'un client shooting]", nom: "[À COMPLÉTER : nom]", role: "[À COMPLÉTER : type de shooting]", univers: "shootings" },
+  { texte: "[À COMPLÉTER : avis d'un restaurant ou d'un particulier]", nom: "[À COMPLÉTER : nom]", role: "", univers: "shootings" },
+];
+
+// ----- Questions fréquentes (page À propos + page Rendez-vous) -----
+// Une ligne = une question. Les réponses s'ouvrent au clic.
+// Liste vide → la section disparaît.
+const FAQ = [
+  { question: "Sous quel délai les photos sont-elles livrées ?", reponse: "[À COMPLÉTER : délai, ex. « sous 48 h après un match, sous 7 jours pour un événement »]" },
+  { question: "Combien de photos sont livrées ?", reponse: "[À COMPLÉTER : nombre de photos retouchées selon la prestation]" },
+  { question: "Le club peut-il publier les photos sur ses réseaux ?", reponse: "[À COMPLÉTER : droits d'utilisation accordés (réseaux sociaux, site, presse, affiches), mention du crédit @picsbydvs]" },
+  { question: "Vous déplacez-vous en dehors du Val-d'Oise ?", reponse: "[À COMPLÉTER : zone couverte et frais de déplacement éventuels]" },
+  { question: "Faut-il verser un acompte ?", reponse: "[À COMPLÉTER : montant ou pourcentage de l'acompte, moyens de paiement]" },
+];
+
+// ----- Fil Instagram (accueil) -----
+// Instagram ne permet pas d'afficher ses publications automatiquement sans service
+// payant : ajoute ici à la main tes dernières publications (6 au maximum affichées).
+// image : la photo de la publication, déposée dans images/instagram/
+// lien  : l'adresse de la publication (Partager → Copier le lien sur Instagram)
+// texte : courte description de la photo (sert aux personnes malvoyantes)
+// Liste vide → seul le bouton « Suivre @picsbydvs » s'affiche.
+const INSTAGRAM_POSTS = [
+  // { image: "images/instagram/post-1.jpg", lien: "https://www.instagram.com/p/XXXXXXXXX/", texte: "Célébration après un but" },
 ];
