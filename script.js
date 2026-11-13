@@ -328,11 +328,6 @@ document.querySelectorAll("[data-fond]").forEach(el => {
   el.style.setProperty("--img", `url('${grande(el.dataset.fond)}')`);
 });
 
-// =====================================================
-//  Contenus : affichés une fois les fichiers du dossier contenu/ chargés (voir medias.js)
-// =====================================================
-function afficherContenus() {
-
 // ===== Accueil : Sélection =====
 const blocSelection = document.getElementById("selection");
 if (blocSelection) {
@@ -368,7 +363,7 @@ document.querySelectorAll("[data-clients]").forEach(liste => {
   }).join("");
 });
 
-// ===== Repères de prix (contenu/tarifs.json) =====
+// ===== Repères de prix (TARIFS dans medias.js) =====
 document.querySelectorAll("[data-tarif]").forEach(el => {
   const prix = typeof TARIFS !== "undefined" ? String(TARIFS[el.dataset.tarif] || "").trim() : "";
   if (prix) el.textContent = `À partir de ${prix} €`;
@@ -481,17 +476,6 @@ if (galerieShootings) {
     filtres: filtresDepuis(CATEGORIES_SHOOTING),
     legende: categorieShooting,
     alt: altShooting
-  });
-}
-
-} // fin de afficherContenus
-
-if (typeof CONTENU_PRET !== "undefined") {
-  CONTENU_PRET.then(afficherContenus).catch(erreur => {
-    console.error("Contenu introuvable :", erreur);
-    const main = document.querySelector("main");
-    if (main) main.insertAdjacentHTML("afterbegin",
-      `<p class="notice">Le contenu n'a pas pu être chargé. Rechargez la page dans un instant.</p>`);
   });
 }
 
