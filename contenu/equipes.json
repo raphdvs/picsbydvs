@@ -1,0 +1,29 @@
+{
+  "sports": [
+    {
+      "id": "football",
+      "nom": "Football",
+      "equipes": [
+        { "id": "cergy-pontoise", "nom": "Cergy-Pontoise", "couverture": "https://picsum.photos/seed/cov-fc-cergy/900/700" },
+        { "id": "saint-ouen-laumone", "nom": "AS Saint-Ouen-l'Aumône", "couverture": "" },
+        { "id": "rc-gonesse", "nom": "RC Gonesse", "couverture": "https://picsum.photos/seed/cov-gonesse/900/700" },
+        { "id": "fc-pierrelaye", "nom": "FC Pierrelaye", "couverture": "https://picsum.photos/seed/cov-pierrelaye/900/700" }
+      ]
+    },
+    {
+      "id": "futsal",
+      "nom": "Futsal",
+      "equipes": [
+        { "id": "paris-acasa", "nom": "Paris Acasa", "couverture": "https://picsum.photos/seed/cov-acasa/900/700" },
+        { "id": "cergy-pontoise", "nom": "Cergy-Pontoise", "couverture": "https://picsum.photos/seed/cov-fu-cergy/900/700" }
+      ]
+    },
+    {
+      "id": "hockey",
+      "nom": "Hockey",
+      "equipes": [
+        { "id": "les-jokers", "nom": "Les Jokers", "couverture": "https://picsum.photos/seed/cov-jokers/900/700" }
+      ]
+    }
+  ]
+}

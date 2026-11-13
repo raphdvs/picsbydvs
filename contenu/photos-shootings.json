@@ -1,0 +1,10 @@
+{
+  "photos": [
+    { "categorie": "anniversaire", "src": "https://picsum.photos/seed/an1/1400/1400", "video": "", "titre": "", "selection": true },
+    { "categorie": "studio", "src": "https://picsum.photos/seed/st1/1400/1400", "video": "", "titre": "Portrait", "selection": true },
+    { "categorie": "restaurant", "src": "https://picsum.photos/seed/re1/1400/1400", "video": "", "titre": "", "selection": true },
+    { "categorie": "anniversaire", "src": "https://picsum.photos/seed/an2/1400/1400", "video": "", "titre": "", "selection": false },
+    { "categorie": "studio", "src": "https://picsum.photos/seed/st2/1000/1500", "video": "", "titre": "", "selection": false },
+    { "categorie": "restaurant", "src": "https://picsum.photos/seed/re2/1400/1400", "video": "", "titre": "", "selection": false }
+  ]
+}
