@@ -344,7 +344,7 @@ if (blocSelection) {
     blocSelection.closest("section").hidden = true;
   } else {
     creerGalerie(blocSelection, melange.slice(0, 8), {
-      legende: m => m.sport ? altSport(m) : categorieShooting(m),
+      legende: m => m.sport ? nomEquipe(m) : categorieShooting(m),
       alt: m => m.sport ? altSport(m) : altShooting(m)
     });
   }
@@ -500,9 +500,9 @@ if (pageEquipe) {
         <div class="teams">${autres.join("")}</div>
       </section>`;
 
+    // Galerie épurée : ni filtres ni catégorie affichée (seul un éventuel "titre" apparaît)
     creerGalerie(document.getElementById("galerie-equipe"), mediasEquipe(sportId, equipeId), {
-      filtres: filtresDepuis(CATEGORIES_SPORT),
-      legende: categorieSport,
+      legende: () => "",
       alt: altSport
     });
   }
