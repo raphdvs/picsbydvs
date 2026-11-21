@@ -156,9 +156,9 @@ const MEDIAS_SPORT = [
 // lien : site ou Instagram du client ("" = pas de lien)
 // Liste vide → la section disparaît.
 const CLIENTS = [
-  { nom: "[À COMPLÉTER : client 1]", logo: "", lien: "" },
-  { nom: "[À COMPLÉTER : client 2]", logo: "", lien: "" },
-  { nom: "[À COMPLÉTER : client 3]", logo: "", lien: "" },
+  { nom: "Cergy Pontoise FC", logo: "", lien: "" },   // CPFC, football
+  { nom: "Les Jokers", logo: "", lien: "" },          // hockey
+  { nom: "Leslei Bijoux", logo: "", lien: "" },       // shooting bijoux (corporate)
 ];
 
 // ----- Tarifs (« À partir de … € » dans les cartes de prestations) -----
