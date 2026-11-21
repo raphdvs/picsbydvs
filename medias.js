@@ -34,7 +34,7 @@ const SPORTS = {
   futsal: {
     nom: "Futsal",
     equipes: {
-      "paris-acasa":    { nom: "Paris Acasa",    couverture: "https://picsum.photos/seed/cov-acasa/900/700" },
+      "paris-acasa":    { nom: "Paris Acasa",    couverture: "images/Paris Acasa/DSC00930.jpg" },
       "cergy-pontoise": { nom: "Cergy-Pontoise", couverture: "https://picsum.photos/seed/cov-fu-cergy/900/700" },
     },
   },
@@ -83,7 +83,19 @@ const MEDIAS_SPORT = [
 
   { sport: "football", equipe: "fc-pierrelaye", categorie: "match", src: "https://picsum.photos/seed/p1/1600/1200", titre: "" },
 
-  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "https://picsum.photos/seed/a1/1600/1200", titre: "" },
+  // Paris Acasa (futsal) : photos dans images/Paris Acasa/ (copies web 2000 px)
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC00930.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC00937.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC00946.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC01165.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC01304.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC01444.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC01909.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC02550.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC03113.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC03600.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC04239.jpg", titre: "" },
+  { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC04258.jpg", titre: "" },
 
   { sport: "futsal", equipe: "cergy-pontoise", categorie: "media-day", src: "https://picsum.photos/seed/fc1/1600/1200", titre: "" },
 
