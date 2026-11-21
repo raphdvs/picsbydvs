@@ -41,7 +41,7 @@ const SPORTS = {
   hockey: {
     nom: "Hockey",
     equipes: {
-      "les-jokers": { nom: "Les Jokers", couverture: "https://picsum.photos/seed/cov-jokers/900/700" },
+      "les-jokers": { nom: "Les Jokers", couverture: "images/Jokers/jokers-02.jpg" },
     },
   },
 };
@@ -87,7 +87,17 @@ const MEDIAS_SPORT = [
 
   { sport: "futsal", equipe: "cergy-pontoise", categorie: "media-day", src: "https://picsum.photos/seed/fc1/1600/1200", titre: "" },
 
-  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "https://picsum.photos/seed/j1/1600/1200", titre: "" },
+  // Les Jokers (hockey) : photos dans images/Jokers/
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-01.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-02.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-03.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-04.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-05.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-06.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-07.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-08.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-09.jpg", titre: "" },
+  { sport: "hockey", equipe: "les-jokers", categorie: "match", src: "images/Jokers/jokers-10.jpg", titre: "" },
 
   // Exemple de vidéo (enlève les // pour l'activer) :
   // { sport: "football", equipe: "rc-gonesse", categorie: "media-day", src: "videos/gonesse-media-day.mp4", poster: "images/sport/gonesse-media-day-poster.jpg", titre: "Teaser Media Day" },
