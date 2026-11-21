@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Événements — Raphaël, photographe</title>
+  <meta name="description" content="Photographe d'événements : anniversaires, soirées et bientôt mariages, par Raphaël, basé à Méry-sur-Oise (Val-d'Oise).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <!-- Partage sur les réseaux. [À COMPLÉTER : remplacer DOMAINE-A-COMPLETER par votre domaine]
+       [À COMPLÉTER : remplacer l'image par une vraie photo d'événement] -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raphaël, photographe">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Événements — Raphaël, photographe">
+  <meta property="og:description" content="Photographe d'événements : anniversaires, soirées et bientôt mariages.">
+  <meta property="og:url" content="https://DOMAINE-A-COMPLETER/evenements.html">
+  <meta property="og:image" content="https://DOMAINE-A-COMPLETER/images/soa/DSC05408.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Événements — Raphaël, photographe">
+  <meta name="twitter:description" content="Photographe d'événements : anniversaires, soirées et bientôt mariages.">
+  <meta name="twitter:image" content="https://DOMAINE-A-COMPLETER/images/soa/DSC05408.jpg">
+</head>
+<body data-page="evenements" class="theme-pro">
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <section class="hero hero-light">
+      <p class="kicker">Anniversaires · Soirées · Mariages</p>
+      <h1>Vos moments,<br>sans en rater un.</h1>
+      <p class="lead">Un anniversaire, une soirée ou bientôt un mariage : chaque événement est préparé avec vous.</p>
+      <a class="btn" href="rendez-vous.html">Demander un devis</a>
+    </section>
+
+    <section class="section">
+      <h2>Galerie</h2>
+      <!-- Rempli automatiquement avec MEDIAS_EVENEMENTS de medias.js -->
+      <div id="galerie" data-galerie="evenements"></div>
+    </section>
+
+    <section class="section">
+      <h2>La prestation</h2>
+      <!-- Le prix vient de TARIFS dans medias.js -->
+      <div class="cards">
+        <div class="card"><h3>Événements</h3><p>Anniversaires, soirées, et bientôt mariages. Un reportage discret et vivant de votre journée.</p><p class="prix" data-tarif="evenement"></p></div>
+      </div>
+    </section>
+
+    <section class="section avis-section" aria-labelledby="avis-titre">
+      <p class="kicker">Avis</p>
+      <h2 id="avis-titre">Ils en parlent</h2>
+      <!-- Rempli automatiquement avec les AVIS « evenements » de medias.js -->
+      <div class="avis-liste" data-avis="evenements"></div>
+    </section>
+
+    <section class="cta-band">
+      <h2>Un événement à venir ?</h2>
+      <p>Réservez un créneau pour en discuter, le devis suit rapidement.</p>
+      <a class="btn" href="rendez-vous.html">Prendre rendez-vous</a>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="medias.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

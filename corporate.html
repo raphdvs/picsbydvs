@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate — Raphaël, photographe</title>
+  <meta name="description" content="Photographe corporate : portraits professionnels en studio et photos de restaurant, par Raphaël, basé à Méry-sur-Oise (Val-d'Oise).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,300;0,400;0,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="images/favicon-32.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <!-- Partage sur les réseaux. [À COMPLÉTER : remplacer DOMAINE-A-COMPLETER par votre domaine]
+       [À COMPLÉTER : remplacer l'image par une vraie photo studio ou restaurant] -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Raphaël, photographe">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Corporate — Raphaël, photographe">
+  <meta property="og:description" content="Portraits professionnels en studio et photos de restaurant.">
+  <meta property="og:url" content="https://DOMAINE-A-COMPLETER/corporate.html">
+  <meta property="og:image" content="https://DOMAINE-A-COMPLETER/images/soa/DSC05408.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Corporate — Raphaël, photographe">
+  <meta name="twitter:description" content="Portraits professionnels en studio et photos de restaurant.">
+  <meta name="twitter:image" content="https://DOMAINE-A-COMPLETER/images/soa/DSC05408.jpg">
+</head>
+<body data-page="corporate" class="theme-pro">
+  <header id="site-header" class="site-header"></header>
+
+  <main>
+    <section class="hero hero-light">
+      <p class="kicker">Studio · Restaurant</p>
+      <h1>Votre image<br>professionnelle.</h1>
+      <p class="lead">Un portrait, un book ou la carte de votre restaurant : chaque shooting est préparé avec vous.</p>
+      <a class="btn" href="rendez-vous.html">Demander un devis</a>
+    </section>
+
+    <section class="section">
+      <h2>Galerie</h2>
+      <!-- Rempli automatiquement avec MEDIAS_CORPORATE de medias.js -->
+      <div id="galerie" data-galerie="corporate"></div>
+    </section>
+
+    <section class="section">
+      <h2>Prestations</h2>
+      <!-- Les prix viennent de TARIFS dans medias.js -->
+      <div class="cards">
+        <div class="card"><h3>Studio</h3><p>Portraits, book, photos professionnelles ou créatives, avec une lumière travaillée.</p><p class="prix" data-tarif="studio"></p></div>
+        <div class="card"><h3>Restaurant</h3><p>Plats, salle, équipe : des visuels pour votre carte, votre site et vos réseaux sociaux.</p><p class="prix" data-tarif="restaurant"></p></div>
+      </div>
+    </section>
+
+    <section class="section avis-section" aria-labelledby="avis-titre">
+      <p class="kicker">Avis</p>
+      <h2 id="avis-titre">Ils en parlent</h2>
+      <!-- Rempli automatiquement avec les AVIS « corporate » de medias.js -->
+      <div class="avis-liste" data-avis="corporate"></div>
+    </section>
+
+    <section class="cta-band">
+      <h2>Un projet pour votre activité ?</h2>
+      <p>Réservez un créneau pour en discuter, le devis suit rapidement.</p>
+      <a class="btn" href="rendez-vous.html">Prendre rendez-vous</a>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <script src="medias.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -32,7 +32,7 @@
   --pale: #D0E6FB;
   --blanc: #FFFFFF;
 
-  /* Thème clair par défaut (accueil, shootings, rendez-vous, mentions légales) */
+  /* Thème clair par défaut (accueil, événements, corporate, rendez-vous, mentions légales) */
   --bg: var(--blanc);
   --text: var(--marine);
   --soft: var(--pale);
@@ -103,6 +103,11 @@ h3 { font-size: 1.3rem; margin-bottom: 8px; }
 }
 .brand img { width: 40px; height: 40px; }
 .site-header nav { display: flex; align-items: center; gap: 28px; }
+/* Écrans moyens : menu resserré pour que les 5 liens tiennent sur une ligne */
+@media (min-width: 801px) and (max-width: 1080px) {
+  .site-header nav { gap: 16px; }
+  .site-header nav a { font-size: .88rem; }
+}
 .site-header nav a { text-decoration: none; font-size: .95rem; font-weight: 600; }
 .site-header nav a:not(.btn) { padding: 6px 0; border-bottom: 2px solid transparent; }
 .site-header nav a:not(.btn):hover,
@@ -133,7 +138,7 @@ h3 { font-size: 1.3rem; margin-bottom: 8px; }
   padding-bottom: 160px;
 }
 
-/* Shootings : clair et aéré */
+/* Événements et Corporate : clair et aéré */
 .hero-light { background: var(--pale); color: var(--marine); }
 .hero-light .kicker { color: var(--bleu); }
 
@@ -157,6 +162,16 @@ h3 { font-size: 1.3rem; margin-bottom: 8px; }
   color: var(--marine);
   background-image: linear-gradient(rgba(208, 230, 251, .8), rgba(255, 255, 255, .95)), var(--img);
 }
+.world-corporate {
+  color: var(--blanc);
+  background-image: linear-gradient(rgba(3, 76, 140, .6), rgba(3, 76, 140, .95)), var(--img);
+}
+/* Trois univers côte à côte */
+.split-3 { grid-template-columns: repeat(3, 1fr); }
+.split-3 .world { padding: 46px 4vw; min-height: 400px; }
+
+/* Une seule carte de prestation : largeur limitée */
+.cards:has(> .card:only-child) { max-width: 520px; }
 
 /* À propos */
 .about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 50px; align-items: center; }

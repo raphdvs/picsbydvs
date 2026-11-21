@@ -16,7 +16,8 @@ const page = document.body.dataset.page;
 const links = [
   ["index.html", "Accueil", "accueil"],
   ["sport.html", "Sport", "sport"],
-  ["shootings.html", "Shootings", "shootings"],
+  ["evenements.html", "Événements", "evenements"],
+  ["corporate.html", "Corporate", "corporate"],
   ["a-propos.html", "À propos", "a-propos"],
 ];
 
@@ -78,9 +79,19 @@ const grande = src => versionOptimisee(src, 2000);
 // Libellés et textes alternatifs
 const nomEquipe = m => (SPORTS[m.sport] && SPORTS[m.sport].equipes[m.equipe] || {}).nom || "";
 const categorieSport = m => CATEGORIES_SPORT[m.categorie] || "";
-const categorieShooting = m => CATEGORIES_SHOOTING[m.categorie] || "";
+// Événements et Corporate : chaque média garde la trace de sa page ("univers")
+const listeEvenements = (typeof MEDIAS_EVENEMENTS !== "undefined" ? MEDIAS_EVENEMENTS : [])
+  .map(m => ({ ...m, univers: "evenements" }));
+const listeCorporate = (typeof MEDIAS_CORPORATE !== "undefined" ? MEDIAS_CORPORATE : [])
+  .map(m => ({ ...m, univers: "corporate" }));
+const categoriePro = m => {
+  const categories = m.univers === "evenements"
+    ? (typeof CATEGORIES_EVENEMENTS !== "undefined" ? CATEGORIES_EVENEMENTS : {})
+    : (typeof CATEGORIES_CORPORATE !== "undefined" ? CATEGORIES_CORPORATE : {});
+  return categories[m.categorie] || "";
+};
 const altSport = m => [nomEquipe(m), categorieSport(m)].filter(Boolean).join(" — ");
-const altShooting = m => `Shooting ${categorieShooting(m).toLowerCase()}`.trim();
+const altPro = m => [m.univers === "evenements" ? "Événement" : "Corporate", categoriePro(m)].filter(Boolean).join(" — ");
 
 // Couverture d'une équipe : celle de medias.js, sinon sa première photo
 function couvertureEquipe(sportId, equipeId, taille) {
@@ -332,20 +343,19 @@ document.querySelectorAll("[data-fond]").forEach(el => {
 // ===== Accueil : Sélection =====
 const blocSelection = document.getElementById("selection");
 if (blocSelection) {
-  const sport = MEDIAS_SPORT.filter(m => m.selection && aUneSource(m));
-  const shootings = MEDIAS_SHOOTING.filter(m => m.selection && aUneSource(m));
-  // On alterne Sport / Shootings, 8 au maximum
+  const choisies = liste => liste.filter(m => m.selection && aUneSource(m));
+  const groupes = [choisies(MEDIAS_SPORT), choisies(listeEvenements), choisies(listeCorporate)];
+  // On alterne Sport / Événements / Corporate, 8 au maximum
   const melange = [];
-  for (let i = 0; i < Math.max(sport.length, shootings.length); i++) {
-    if (sport[i]) melange.push(sport[i]);
-    if (shootings[i]) melange.push(shootings[i]);
+  for (let i = 0; i < Math.max(...groupes.map(g => g.length)); i++) {
+    groupes.forEach(g => { if (g[i]) melange.push(g[i]); });
   }
   if (!melange.length) {
     blocSelection.closest("section").hidden = true;
   } else {
     creerGalerie(blocSelection, melange.slice(0, 8), {
-      legende: m => m.sport ? nomEquipe(m) : categorieShooting(m),
-      alt: m => m.sport ? altSport(m) : altShooting(m)
+      legende: m => m.sport ? nomEquipe(m) : categoriePro(m),
+      alt: m => m.sport ? altSport(m) : altPro(m)
     });
   }
 }
@@ -372,7 +382,7 @@ document.querySelectorAll("[data-tarif]").forEach(el => {
 });
 
 // ===== Avis clients (AVIS dans medias.js) =====
-// data-avis="sport" | "shootings" | "tous"
+// data-avis="sport" | "evenements" | "corporate" | "tous"
 document.querySelectorAll("[data-avis]").forEach(liste => {
   const univers = liste.dataset.avis;
   const avis = (typeof AVIS !== "undefined" ? AVIS : [])
@@ -508,15 +518,11 @@ if (pageEquipe) {
   }
 }
 
-// ===== Page Shootings =====
-const galerieShootings = document.querySelector('[data-galerie="shootings"]');
-if (galerieShootings) {
-  creerGalerie(galerieShootings, MEDIAS_SHOOTING.filter(aUneSource), {
-    filtres: filtresDepuis(CATEGORIES_SHOOTING),
-    legende: categorieShooting,
-    alt: altShooting
-  });
-}
+// ===== Pages Événements et Corporate : galerie épurée (ni filtres ni catégorie affichée) =====
+[["evenements", listeEvenements], ["corporate", listeCorporate]].forEach(([nom, liste]) => {
+  const galerie = document.querySelector(`[data-galerie="${nom}"]`);
+  if (galerie) creerGalerie(galerie, liste.filter(aUneSource), { legende: () => "", alt: altPro });
+});
 
 // ===== Apparition douce au défilement (fondu + légère montée) =====
 // Désactivée si la personne a demandé à réduire les animations sur son appareil.

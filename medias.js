@@ -55,8 +55,15 @@ const CATEGORIES_SPORT = {
   "presentation-equipement": "Présentation équipement",
 };
 
-const CATEGORIES_SHOOTING = {
+// Catégories des pages Événements et Corporate (non affichées sur ces pages,
+// elles servent aux légendes de la Sélection et aux textes pour malvoyants)
+const CATEGORIES_EVENEMENTS = {
   "anniversaire": "Anniversaire",
+  "mariage": "Mariage",
+  "soiree": "Soirée",
+};
+
+const CATEGORIES_CORPORATE = {
   "studio": "Studio",
   "restaurant": "Restaurant",
 };
@@ -68,7 +75,7 @@ const CATEGORIES_SHOOTING = {
 // l'image marchera sur ton PC mais sera cassée une fois le site en ligne.
 // Vidéo : fichier .mp4 ou .webm + "poster" (image affichée avant la lecture).
 // selection: true  →  la photo apparaît aussi dans la « Sélection » de l'accueil
-//                     (6 à 8 au total, Sport et Shootings mélangés ; au-delà de 8, les suivantes sont ignorées).
+//                     (6 à 8 au total, Sport, Événements et Corporate mélangés ; au-delà de 8, les suivantes sont ignorées).
 const MEDIAS_SPORT = [
   // Photo à ajouter (src vide = ignorée automatiquement par le site) :
   // { sport: "football", equipe: "rc-gonesse", categorie: "match", src: "", titre: "Victoire à domicile" },
@@ -156,18 +163,25 @@ const TARIFS = {
   "match": "[À COMPLÉTER]",
   "media-day": "[À COMPLÉTER]",
   "presentation-equipement": "[À COMPLÉTER]",
-  // Page Shootings
+  // Page Événements
   "evenement": "[À COMPLÉTER]",
+  // Page Corporate
   "studio": "[À COMPLÉTER]",
   "restaurant": "[À COMPLÉTER]",
 };
 
-// ----- Contenus Shootings -----
-const MEDIAS_SHOOTING = [
+// ----- Contenus Événements (anniversaires, mariages, soirées) -----
+// categorie : "anniversaire", "mariage" ou "soiree" (voir CATEGORIES_EVENEMENTS)
+const MEDIAS_EVENEMENTS = [
   { categorie: "anniversaire", src: "https://picsum.photos/seed/an1/1400/1400", titre: "", selection: true },
+  { categorie: "anniversaire", src: "https://picsum.photos/seed/an2/1400/1400", titre: "" },
+];
+
+// ----- Contenus Corporate (studio, restaurant) -----
+// categorie : "studio" ou "restaurant" (voir CATEGORIES_CORPORATE)
+const MEDIAS_CORPORATE = [
   { categorie: "studio", src: "https://picsum.photos/seed/st1/1400/1400", titre: "Portrait", selection: true },
   { categorie: "restaurant", src: "https://picsum.photos/seed/re1/1400/1400", titre: "", selection: true },
-  { categorie: "anniversaire", src: "https://picsum.photos/seed/an2/1400/1400", titre: "" },
   { categorie: "studio", src: "https://picsum.photos/seed/st2/1000/1500", titre: "" },
   { categorie: "restaurant", src: "https://picsum.photos/seed/re2/1400/1400", titre: "" },
 ];
@@ -176,13 +190,14 @@ const MEDIAS_SHOOTING = [
 // texte   : l'avis, mot pour mot (2 ou 3 phrases), avec l'accord de la personne
 // nom     : prénom + initiale, ou nom du club
 // role    : ex. "Président du RC Gonesse", "Mariage, juin 2025" ("" = rien d'affiché)
-// univers : "sport" (accueil + page Sport) ou "shootings" (accueil + page Shootings)
+// univers : "sport" (page Sport), "evenements" (page Événements) ou "corporate" (page Corporate)
+//           Tous les avis apparaissent aussi sur l'accueil.
 // Liste vide → la section disparaît.
 const AVIS = [
   { texte: "[À COMPLÉTER : avis d'un club]", nom: "[À COMPLÉTER : nom]", role: "[À COMPLÉTER : fonction, club]", univers: "sport" },
   { texte: "[À COMPLÉTER : avis d'un club ou d'un joueur]", nom: "[À COMPLÉTER : nom]", role: "", univers: "sport" },
-  { texte: "[À COMPLÉTER : avis d'un client shooting]", nom: "[À COMPLÉTER : nom]", role: "[À COMPLÉTER : type de shooting]", univers: "shootings" },
-  { texte: "[À COMPLÉTER : avis d'un restaurant ou d'un particulier]", nom: "[À COMPLÉTER : nom]", role: "", univers: "shootings" },
+  { texte: "[À COMPLÉTER : avis d'un client événement]", nom: "[À COMPLÉTER : nom]", role: "[À COMPLÉTER : type d'événement]", univers: "evenements" },
+  { texte: "[À COMPLÉTER : avis d'un restaurant ou d'une entreprise]", nom: "[À COMPLÉTER : nom]", role: "", univers: "corporate" },
 ];
 
 // ----- Questions fréquentes (page À propos + page Rendez-vous) -----
