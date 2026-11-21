@@ -28,7 +28,7 @@ const SPORTS = {
       "cergy-pontoise":     { nom: "Cergy-Pontoise",         couverture: "https://picsum.photos/seed/cov-fc-cergy/900/700" },
       "saint-ouen-laumone": { nom: "AS Saint-Ouen-l'Aumône" },
       "rc-gonesse":         { nom: "RC Gonesse",             couverture: "https://picsum.photos/seed/cov-gonesse/900/700" },
-      "fc-pierrelaye":      { nom: "FC Pierrelaye",          couverture: "https://picsum.photos/seed/cov-pierrelaye/900/700" },
+      "fc-pierrelaye":      { nom: "FC Pierrelaye",          couverture: "images/Pierrelaye/DSC07367.jpg" },
     },
   },
   futsal: {
@@ -81,7 +81,20 @@ const MEDIAS_SPORT = [
   { sport: "football", equipe: "saint-ouen-laumone", categorie: "match", src: "images/soa/DSC03241.jpg", titre: "", selection: true },
   { sport: "football", equipe: "saint-ouen-laumone", categorie: "match", src: "images/soa/DSC05128.jpg", titre: "", selection: true },
 
-  { sport: "football", equipe: "fc-pierrelaye", categorie: "match", src: "https://picsum.photos/seed/p1/1600/1200", titre: "" },
+  // FC Pierrelaye : photos dans images/Pierrelaye/ (copies web 2000 px)
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC07367.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC00943.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC01238.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC01258.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "match", src: "images/Pierrelaye/DSC04821.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC06268.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC06282-2.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "match", src: "images/Pierrelaye/DSC06778.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC07683.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "match", src: "images/Pierrelaye/DSC08781.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "match", src: "images/Pierrelaye/DSC08846.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC09302.jpg", titre: "" },
+  { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC09488.jpg", titre: "" },
 
   // Paris Acasa (futsal) : photos dans images/Paris Acasa/ (copies web 2000 px)
   { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC00930.jpg", titre: "" },
