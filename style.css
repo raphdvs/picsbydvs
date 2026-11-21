@@ -439,6 +439,42 @@ a.client:hover { transform: translateY(-2px); border-color: var(--ciel); }
 }
 .anime .apparition.visible { opacity: 1; transform: none; }
 
+/* Intro animée de l'accueil (logo au défilement)
+   Les variables sont mises à jour par script.js :
+   --tour (rotation du ballon), --texte (0 → 1 : « Raphaël » sort),
+   --sortie (0 → 1 : le logo s'efface), --largeur (largeur du mot). */
+.intro { display: none; }
+.intro.active {
+  display: block; height: 260vh;
+  background: var(--marine); color: var(--blanc);
+  --tour: 0deg; --texte: 0; --sortie: 0;
+}
+.intro-scene {
+  /* --entete = hauteur du menu, mesurée par script.js */
+  position: sticky; top: var(--entete, 0px);
+  height: calc(100vh - var(--entete, 0px)); height: calc(100svh - var(--entete, 0px));
+  display: grid; place-items: center; overflow: hidden;
+}
+.intro-logo {
+  display: flex; align-items: center;
+  font-size: clamp(2.6rem, 10vw, 6.5rem); font-weight: 700; font-style: italic; line-height: 1;
+  opacity: calc(1 - var(--sortie));
+  transform: scale(calc(1 + var(--sortie) * .3));
+}
+.intro-ballon { position: relative; z-index: 1; display: block; width: 1.3em; height: 1.3em; animation: intro-entree 1.1s cubic-bezier(.2, .8, .3, 1.15) both; }
+.intro-ballon img { display: block; width: 100%; height: 100%; transform: rotate(var(--tour)); }
+/* Le mot sort de derrière le ballon : la boîte s'élargit pendant que le texte glisse */
+.intro-texte { display: block; overflow: hidden; width: calc(var(--largeur, 5em) * var(--texte)); margin-left: calc(.25em * var(--texte)); }
+.intro-texte span { display: block; width: max-content; white-space: nowrap; padding: .12em .12em .16em 0; transform: translateX(calc((var(--texte) - 1) * 100%)); }
+.intro-indice {
+  position: absolute; bottom: 30px; left: 0; right: 0; margin: 0; text-align: center;
+  font-size: .75rem; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: var(--ciel);
+  opacity: calc(1 - var(--texte) * 3);
+}
+.intro-indice::after { content: ""; display: block; width: 2px; height: 34px; margin: 12px auto 0; background: var(--ciel); animation: intro-indice 1.6s ease-in-out infinite; transform-origin: top; }
+@keyframes intro-entree { from { transform: scale(0) rotate(-300deg); opacity: 0; } }
+@keyframes intro-indice { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
 /* Animations réduites à la demande de l'appareil */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

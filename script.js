@@ -699,3 +699,36 @@ if (booking) {
 
 // ===== Fonds en photo : vérification des versions légères (voir verifierFonds) =====
 verifierFonds();
+
+// ===== Accueil : intro animée au défilement (logo) =====
+// Comme la vidéo du logo : le ballon tourne, puis « Raphaël » sort de derrière lui,
+// enfin le logo s'efface et la suite de la page arrive. Tout suit la molette / le doigt.
+// Rien ne s'affiche si l'appareil demande à réduire les animations.
+const intro = document.querySelector(".intro");
+if (intro && !animationsReduites) {
+  const mot = intro.querySelector(".intro-texte span");
+  const etape = (p, debut, fin) => Math.min(1, Math.max(0, (p - debut) / (fin - debut)));
+  let enAttente = false;
+  const majIntro = () => {
+    enAttente = false;
+    // Progression 0 → 1 pendant que la scène reste collée sous le menu
+    const entete = document.getElementById("site-header").offsetHeight;
+    const course = intro.offsetHeight - (innerHeight - entete);
+    const p = course > 0 ? Math.min(1, Math.max(0, (entete - intro.getBoundingClientRect().top) / course)) : 1;
+    intro.style.setProperty("--tour", `${p * 540}deg`);        // un tour et demi en tout
+    intro.style.setProperty("--texte", etape(p, .2, .5));       // « Raphaël » sort
+    intro.style.setProperty("--sortie", etape(p, .75, 1));      // le logo s'efface (logo complet visible entre .5 et .75)
+  };
+  const mesurer = () => {
+    intro.style.setProperty("--largeur", `${mot.offsetWidth}px`);
+    intro.style.setProperty("--entete", `${document.getElementById("site-header").offsetHeight}px`);
+  };
+  intro.classList.add("active");
+  mesurer();
+  majIntro();
+  if (document.fonts) document.fonts.ready.then(mesurer); // largeur exacte une fois Montserrat chargée
+  addEventListener("scroll", () => {
+    if (!enAttente) { enAttente = true; requestAnimationFrame(majIntro); }
+  }, { passive: true });
+  addEventListener("resize", () => { mesurer(); majIntro(); });
+}
