@@ -29,6 +29,7 @@ const SPORTS = {
       "saint-ouen-laumone": { nom: "AS Saint-Ouen-l'Aumône" },
       "rc-gonesse":         { nom: "RC Gonesse",             couverture: "https://picsum.photos/seed/cov-gonesse/900/700" },
       "fc-pierrelaye":      { nom: "FC Pierrelaye",          couverture: "images/Pierrelaye/DSC07367.jpg" },
+      "fc-versailles":      { nom: "FC Versailles",          couverture: "images/Versailles/DSC03987.jpg" },
     },
   },
   futsal: {
@@ -95,6 +96,15 @@ const MEDIAS_SPORT = [
   { sport: "football", equipe: "fc-pierrelaye", categorie: "match", src: "images/Pierrelaye/DSC08846.jpg", titre: "" },
   { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC09302.jpg", titre: "" },
   { sport: "football", equipe: "fc-pierrelaye", categorie: "media-day", src: "images/Pierrelaye/DSC09488.jpg", titre: "" },
+
+  // FC Versailles : photos dans images/Versailles/ (copies web 2000 px)
+  { sport: "football", equipe: "fc-versailles", categorie: "match", src: "images/Versailles/DSC03987.jpg", titre: "" },
+  { sport: "football", equipe: "fc-versailles", categorie: "match", src: "images/Versailles/DSC03989.jpg", titre: "" },
+  { sport: "football", equipe: "fc-versailles", categorie: "match", src: "images/Versailles/DSC04019.jpg", titre: "" },
+  { sport: "football", equipe: "fc-versailles", categorie: "match", src: "images/Versailles/DSC04040.jpg", titre: "" },
+  { sport: "football", equipe: "fc-versailles", categorie: "match", src: "images/Versailles/DSC04078.jpg", titre: "" },
+  { sport: "football", equipe: "fc-versailles", categorie: "match", src: "images/Versailles/DSC04127.jpg", titre: "" },
+  { sport: "football", equipe: "fc-versailles", categorie: "match", src: "images/Versailles/DSC04178.jpg", titre: "" },
 
   // Paris Acasa (futsal) : photos dans images/Paris Acasa/ (copies web 2000 px)
   { sport: "futsal", equipe: "paris-acasa", categorie: "match", src: "images/Paris Acasa/DSC00930.jpg", titre: "" },
