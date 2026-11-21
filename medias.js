@@ -180,10 +180,30 @@ const MEDIAS_EVENEMENTS = [
 // ----- Contenus Corporate (studio, restaurant) -----
 // categorie : "studio" ou "restaurant" (voir CATEGORIES_CORPORATE)
 const MEDIAS_CORPORATE = [
-  { categorie: "studio", src: "https://picsum.photos/seed/st1/1400/1400", titre: "Portrait", selection: true },
-  { categorie: "restaurant", src: "https://picsum.photos/seed/re1/1400/1400", titre: "", selection: true },
-  { categorie: "studio", src: "https://picsum.photos/seed/st2/1000/1500", titre: "" },
-  { categorie: "restaurant", src: "https://picsum.photos/seed/re2/1400/1400", titre: "" },
+  // Shooting studio bijoux : photos dans images/Bijoux/ (copies web 2000 px)
+  { categorie: "studio", src: "images/Bijoux/DSC00112.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08284.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08441.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08478.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08601.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08684.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08699.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08731.jpg", titre: "", selection: true },
+  { categorie: "studio", src: "images/Bijoux/DSC08735.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08754.jpg", titre: "" },
+  { categorie: "studio", src: "images/Bijoux/DSC08776.jpg", titre: "" },
+
+  // Restaurant : photos dans images/Restaurant/ (copies web 2000 px)
+  { categorie: "restaurant", src: "images/Restaurant/DSC08489.jpg", titre: "" },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08513.jpg", titre: "" },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08519.jpg", titre: "" },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08526.jpg", titre: "" },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08539.jpg", titre: "" },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08547.jpg", titre: "" },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08581.jpg", titre: "", selection: true },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08849.jpg", titre: "" },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08974.jpg", titre: "" },
+  { categorie: "restaurant", src: "images/Restaurant/DSC08997.jpg", titre: "" },
 ];
 
 // ----- Avis clients -----
