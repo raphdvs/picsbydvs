@@ -518,10 +518,41 @@ if (pageEquipe) {
   }
 }
 
-// ===== Pages Événements et Corporate : galerie épurée (ni filtres ni catégorie affichée) =====
-[["evenements", listeEvenements], ["corporate", listeCorporate]].forEach(([nom, liste]) => {
+// ===== Pages Événements et Corporate : une galerie par catégorie, avec son titre =====
+// (ordre et titres : CATEGORIES_EVENEMENTS / CATEGORIES_CORPORATE dans medias.js ;
+//  la visionneuse reste dans la série ouverte, sans mélanger bijoux et restaurant)
+[
+  ["evenements", listeEvenements, typeof CATEGORIES_EVENEMENTS !== "undefined" ? CATEGORIES_EVENEMENTS : {}],
+  ["corporate", listeCorporate, typeof CATEGORIES_CORPORATE !== "undefined" ? CATEGORIES_CORPORATE : {}],
+].forEach(([nom, liste, categories]) => {
   const galerie = document.querySelector(`[data-galerie="${nom}"]`);
-  if (galerie) creerGalerie(galerie, liste.filter(aUneSource), { legende: () => "", alt: altPro });
+  if (!galerie) return;
+  const medias = liste.filter(aUneSource);
+
+  // Regroupement par catégorie ; une catégorie inconnue va dans « Autres »
+  const series = Object.entries(categories)
+    .map(([id, titre]) => ({ id, titre, medias: medias.filter(m => m.categorie === id) }));
+  const autres = medias.filter(m => !(m.categorie in categories));
+  if (autres.length) series.push({ id: "autres", titre: "Autres", medias: autres });
+  const pleines = series.filter(s => s.medias.length);
+
+  if (!pleines.length) { creerGalerie(galerie, [], { alt: altPro }); return; }
+
+  // Raccourcis vers chaque série (seulement s'il y en a plusieurs)
+  if (pleines.length > 1) {
+    galerie.insertAdjacentHTML("beforeend", `
+      <nav class="sport-nav series-nav" aria-label="Aller à la série">
+        ${pleines.map(s => `<a href="#serie-${s.id}">${s.titre}</a>`).join("")}
+      </nav>`);
+  }
+  pleines.forEach(s => {
+    const bloc = document.createElement("div");
+    bloc.className = "serie";
+    bloc.id = `serie-${s.id}`;
+    bloc.innerHTML = `<h3 class="serie-titre">${s.titre}</h3>`;
+    galerie.append(bloc);
+    creerGalerie(bloc, s.medias, { legende: () => "", alt: altPro });
+  });
 });
 
 // ===== Apparition douce au défilement (fondu + légère montée) =====

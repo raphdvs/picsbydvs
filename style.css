@@ -170,6 +170,17 @@ h3 { font-size: 1.3rem; margin-bottom: 8px; }
 .split-3 { grid-template-columns: repeat(3, 1fr); }
 .split-3 .world { padding: 46px 4vw; min-height: 400px; }
 
+/* Pages Événements et Corporate : une série par catégorie */
+.series-nav { margin: 6px 0 10px; }
+.serie { scroll-margin-top: 90px; }
+.serie + .serie { margin-top: 60px; }
+.serie-titre {
+  display: flex; align-items: center; gap: 16px;
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem); margin: 30px 0 22px;
+}
+/* Filet après le titre */
+.serie-titre::after { content: ""; flex: 1; height: 2px; background: var(--soft); }
+
 /* Une seule carte de prestation : largeur limitée */
 .cards:has(> .card:only-child) { max-width: 520px; }
 

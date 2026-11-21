@@ -55,17 +55,19 @@ const CATEGORIES_SPORT = {
   "presentation-equipement": "Présentation équipement",
 };
 
-// Catégories des pages Événements et Corporate (non affichées sur ces pages,
-// elles servent aux légendes de la Sélection et aux textes pour malvoyants)
+// Catégories des pages Événements et Corporate.
+// Chaque catégorie devient une partie séparée de la galerie, avec son titre,
+// dans l'ordre ci-dessous. Une catégorie sans photo n'apparaît pas.
 const CATEGORIES_EVENEMENTS = {
-  "anniversaire": "Anniversaire",
-  "mariage": "Mariage",
-  "soiree": "Soirée",
+  "anniversaire": "Anniversaires",
+  "mariage": "Mariages",
+  "soiree": "Soirées",
 };
 
 const CATEGORIES_CORPORATE = {
-  "studio": "Studio",
+  "bijoux": "Shooting bijoux",
   "restaurant": "Restaurant",
+  "studio": "Portraits studio",
 };
 
 // ----- Contenus Sport -----
@@ -178,20 +180,20 @@ const MEDIAS_EVENEMENTS = [
 ];
 
 // ----- Contenus Corporate (studio, restaurant) -----
-// categorie : "studio" ou "restaurant" (voir CATEGORIES_CORPORATE)
+// categorie : "bijoux", "restaurant" ou "studio" (voir CATEGORIES_CORPORATE)
 const MEDIAS_CORPORATE = [
   // Shooting studio bijoux : photos dans images/Bijoux/ (copies web 2000 px)
-  { categorie: "studio", src: "images/Bijoux/DSC00112.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08284.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08441.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08478.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08601.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08684.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08699.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08731.jpg", titre: "", selection: true },
-  { categorie: "studio", src: "images/Bijoux/DSC08735.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08754.jpg", titre: "" },
-  { categorie: "studio", src: "images/Bijoux/DSC08776.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC00112.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08284.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08441.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08478.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08601.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08684.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08699.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08731.jpg", titre: "", selection: true },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08735.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08754.jpg", titre: "" },
+  { categorie: "bijoux", src: "images/Bijoux/DSC08776.jpg", titre: "" },
 
   // Restaurant : photos dans images/Restaurant/ (copies web 2000 px)
   { categorie: "restaurant", src: "images/Restaurant/DSC08489.jpg", titre: "" },
