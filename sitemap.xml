@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Plan du site pour Google. Ajoute une ligne <url> quand tu crées une équipe dans medias.js
+     (adresse equipe.html?sport=...&amp;equipe=..., avec &amp; à la place de &). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://raphdvs.github.io/picsbydvs/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/sport.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/evenements.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/corporate.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/a-propos.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/rendez-vous.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/mentions-legales.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/equipe.html?sport=football&amp;equipe=cergy-pontoise</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/equipe.html?sport=football&amp;equipe=saint-ouen-laumone</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/equipe.html?sport=football&amp;equipe=rc-gonesse</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/equipe.html?sport=football&amp;equipe=fc-pierrelaye</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/equipe.html?sport=football&amp;equipe=fc-versailles</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/equipe.html?sport=futsal&amp;equipe=paris-acasa</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/equipe.html?sport=futsal&amp;equipe=cergy-pontoise</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://raphdvs.github.io/picsbydvs/equipe.html?sport=hockey&amp;equipe=les-jokers</loc><lastmod>2026-11-21</lastmod></url>
+</urlset>

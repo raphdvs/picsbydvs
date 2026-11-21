@@ -375,6 +375,10 @@ a.client:hover { transform: translateY(-2px); border-color: var(--ciel); }
   border-top: 1px solid rgba(255, 255, 255, .15);
 }
 .site-footer a { color: var(--ciel); }
+/* Liens vers les prestations (maillage interne) */
+.footer-liens { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-bottom: 14px; font-weight: 600; }
+.footer-liens a { color: var(--blanc); text-decoration: none; }
+.footer-liens a:hover { color: var(--ciel); }
 
 
 /* ===== 16. Avis clients ===== */

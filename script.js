@@ -36,6 +36,13 @@ document.getElementById("site-header").innerHTML = `
   </nav>`;
 
 document.getElementById("site-footer").innerHTML = `
+  <nav class="footer-liens" aria-label="Prestations">
+    <a href="sport.html">Photographe sport</a>
+    <a href="evenements.html">Photographe événementiel</a>
+    <a href="corporate.html">Photographe corporate</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="rendez-vous.html">Devis gratuit</a>
+  </nav>
   © ${new Date().getFullYear()} Raphaël, photographe ·
   <a href="${INSTAGRAM}" target="_blank" rel="noopener" aria-label="Instagram @picsbydvs">@picsbydvs</a> ·
   <a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a> ·
@@ -65,16 +72,20 @@ const mediasEquipe = (sportId, equipeId) =>
   MEDIAS_SPORT.filter(m => aUneSource(m) && m.sport === sportId && m.equipe === equipeId);
 
 // Versions optimisées des photos (voir IMAGES_OPTIMISEES dans medias.js)
-// images/soa/DSC05408.jpg → images/soa/opti/DSC05408-800.webp
+// images/soa/DSC05408.jpg → images/soa/opti/DSC05408-800.jpg
 const optimisees = typeof IMAGES_OPTIMISEES !== "undefined" && IMAGES_OPTIMISEES;
+const formatOptimise = typeof FORMAT_OPTIMISE !== "undefined" ? FORMAT_OPTIMISE : "webp";
 function versionOptimisee(src, taille) {
   if (!optimisees || !src || estVideo(src) || /^(https?:)?\/\//i.test(src)) return src;
   const i = src.lastIndexOf("/");
   const nom = src.slice(i + 1).replace(/\.[^.]+$/, "");
-  return `${src.slice(0, i + 1)}opti/${nom}-${taille}.webp`;
+  return `${src.slice(0, i + 1)}opti/${nom}-${taille}.${formatOptimise}`;
 }
 const vignette = src => versionOptimisee(src, 800);
 const grande = src => versionOptimisee(src, 2000);
+// Si la version légère n'existe pas (photo ajoutée sans lancer le script), on affiche l'originale
+const secours = src => src && versionOptimisee(src, 800) !== src
+  ? ` onerror="this.onerror=null;this.src='${src}'"` : "";
 
 // Libellés et textes alternatifs
 const nomEquipe = m => (SPORTS[m.sport] && SPORTS[m.sport].equipes[m.equipe] || {}).nom || "";
@@ -90,17 +101,27 @@ const categoriePro = m => {
     : (typeof CATEGORIES_CORPORATE !== "undefined" ? CATEGORIES_CORPORATE : {});
   return categories[m.categorie] || "";
 };
-const altSport = m => [nomEquipe(m), categorieSport(m)].filter(Boolean).join(" — ");
-const altPro = m => [m.univers === "evenements" ? "Événement" : "Corporate", categoriePro(m)].filter(Boolean).join(" — ");
+// Textes alternatifs : décrivent la photo pour Google et les lecteurs d'écran
+// ex. « Hockey : Les Jokers, photo de match par Raphaël, photographe sport »
+const altSport = m => {
+  const sport = SPORTS[m.sport] ? SPORTS[m.sport].nom : "Sport";
+  const type = categorieSport(m) ? `photo de ${categorieSport(m).toLowerCase()}` : "photo";
+  return `${sport} : ${nomEquipe(m) || "équipe"}, ${type} par Raphaël, photographe sport`;
+};
+// ex. « Shooting bijoux, photo corporate par Raphaël, photographe »
+const altPro = m => `${categoriePro(m) || (m.univers === "evenements" ? "Événement" : "Shooting")}, photo ${m.univers === "evenements" ? "d'événement" : "corporate"} par Raphaël, photographe`;
 
 // Couverture d'une équipe : celle de medias.js, sinon sa première photo
-function couvertureEquipe(sportId, equipeId, taille) {
+function couvertureSource(sportId, equipeId) {
   const equipe = SPORTS[sportId].equipes[equipeId];
-  if (equipe.couverture) return taille(equipe.couverture);
+  if (equipe.couverture) return equipe.couverture;
   const photo = mediasEquipe(sportId, equipeId).find(m => !estVideo(m.src));
-  return photo ? taille(photo.src) : "";
+  return photo ? photo.src : "";
 }
-const styleFond = url => url ? ` style="--img:url('${url}')"` : "";
+const couvertureEquipe = (sportId, equipeId, taille) => taille(couvertureSource(sportId, equipeId));
+// Fond en photo ; data-origine sert de secours si la version légère manque
+const styleFond = (src, taille) => src
+  ? ` style="--img:url('${taille(src)}')" data-origine="${src}" data-opti="${taille(src)}"` : "";
 
 // « 3 photos · 1 vidéo », sans jamais afficher de zéro
 function compteur(medias) {
@@ -117,7 +138,7 @@ function carteEquipe(sportId, equipeId) {
   const sport = SPORTS[sportId];
   const equipe = sport.equipes[equipeId];
   return `
-    <a class="team" href="${lienEquipe(sportId, equipeId)}"${styleFond(couvertureEquipe(sportId, equipeId, vignette))}>
+    <a class="team" href="${lienEquipe(sportId, equipeId)}"${styleFond(couvertureSource(sportId, equipeId), vignette)}>
       <span class="team-sport">${sport.nom}</span>
       <h3>${equipe.nom}</h3>
       <span class="team-count">${compteur(mediasEquipe(sportId, equipeId))}</span>
@@ -177,7 +198,7 @@ function afficherMedia() {
   arreterVideo();
   lb.media.innerHTML = estVideo(m.src)
     ? `<video src="${m.src}" ${m.poster ? `poster="${m.poster}"` : ""} controls autoplay playsinline aria-label="${alt}"></video>`
-    : `<img src="${grande(m.src)}" alt="${alt}">`;
+    : `<img src="${grande(m.src)}" alt="${alt}"${secours(m.src)}>`;
   lb.texte.innerHTML = (m.titre ? `<strong>${m.titre}</strong>` : "") + legende;
   const plusieurs = lb.liste.length > 1;
   lb.compteur.textContent = plusieurs ? `${lb.index + 1} / ${lb.liste.length}` : "";
@@ -276,7 +297,7 @@ function creerGalerie(conteneur, medias, { filtres = null, legende = () => "", a
       ? (m.poster
           ? `<img src="${m.poster}" alt="${texteAlt}" loading="lazy" decoding="async">`
           : `<video src="${m.src}#t=0.5" muted playsinline preload="metadata" aria-label="${texteAlt}"></video>`)
-      : `<img src="${vignette(m.src)}" alt="${texteAlt}" loading="lazy" decoding="async">`;
+      : `<img src="${vignette(m.src)}" alt="${texteAlt}" loading="lazy" decoding="async"${secours(m.src)}>`;
     const texte = (m.titre ? `<strong>${m.titre}</strong>` : "") + legende(m);
     a.innerHTML = apercu + (texte ? `<span>${texte}</span>` : "");
     a.addEventListener("click", e => {
@@ -338,7 +359,19 @@ function creerGalerie(conteneur, medias, { filtres = null, legende = () => "", a
 // ===== Bandeaux avec photo (data-fond) : version optimisée si disponible =====
 document.querySelectorAll("[data-fond]").forEach(el => {
   el.style.setProperty("--img", `url('${grande(el.dataset.fond)}')`);
+  el.dataset.origine = el.dataset.fond;
+  el.dataset.opti = grande(el.dataset.fond);
 });
+// Fonds en photo : si la version légère manque, on reprend la photo d'origine
+// (le navigateur réutilise l'image déjà téléchargée, pas de double chargement)
+function verifierFonds() {
+  document.querySelectorAll("[data-origine][data-opti]").forEach(el => {
+    if (el.dataset.origine === el.dataset.opti) return;
+    const test = new Image();
+    test.onerror = () => el.style.setProperty("--img", `url('${el.dataset.origine}')`);
+    test.src = el.dataset.opti;
+  });
+}
 
 // ===== Accueil : Sélection =====
 const blocSelection = document.getElementById("selection");
@@ -405,6 +438,21 @@ document.querySelectorAll("[data-faq]").forEach(liste => {
       <summary>${q.question}</summary>
       <p>${q.reponse}</p>
     </details>`).join("");
+  // Données structurées FAQ pour Google, seulement avec les vraies réponses
+  // (celles encore marquées « [À COMPLÉTER » sont ignorées)
+  const completes = faq.filter(q => q.reponse && !q.reponse.includes("[À COMPLÉTER"));
+  if (completes.length && !document.querySelector("script[data-faq-ld]")) {
+    ajouterJsonLd({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: completes.map(q => ({
+        "@type": "Question",
+        name: q.question,
+        acceptedAnswer: { "@type": "Answer", text: q.reponse.replace(/<[^>]+>/g, "") }
+      }))
+    });
+    document.head.lastElementChild.dataset.faqLd = "";
+  }
 });
 
 // ===== Fil Instagram (INSTAGRAM_POSTS dans medias.js), 6 au maximum =====
@@ -414,7 +462,7 @@ document.querySelectorAll("[data-instagram]").forEach(grille => {
   if (!posts.length) { grille.hidden = true; return; }
   grille.innerHTML = posts.map(p => `
     <a href="${p.lien || INSTAGRAM}" target="_blank" rel="noopener">
-      <img src="${vignette(p.image)}" alt="${p.texte || "Publication Instagram de @picsbydvs"}" loading="lazy" decoding="async">
+      <img src="${vignette(p.image)}" alt="${p.texte || "Publication Instagram de @picsbydvs"}" loading="lazy" decoding="async"${secours(p.image)}>
     </a>`).join("");
 });
 document.querySelectorAll("[data-instagram-lien]").forEach(a => { a.href = INSTAGRAM; });
@@ -446,6 +494,23 @@ function majMeta(attribut, cle, valeur) {
   }
   meta.setAttribute("content", valeur);
 }
+// Met à jour (ou crée) la balise <link rel="canonical">
+function majLienCanonique(href) {
+  let lien = document.head.querySelector('link[rel="canonical"]');
+  if (!lien) {
+    lien = document.createElement("link");
+    lien.rel = "canonical";
+    document.head.append(lien);
+  }
+  lien.href = href;
+}
+// Ajoute un bloc de données structurées (schema.org) lu par Google
+function ajouterJsonLd(donnees) {
+  const s = document.createElement("script");
+  s.type = "application/ld+json";
+  s.textContent = JSON.stringify(donnees);
+  document.head.append(s);
+}
 
 const pageEquipe = document.getElementById("page-equipe");
 if (pageEquipe) {
@@ -456,6 +521,7 @@ if (pageEquipe) {
   const equipe = sport && sport.equipes[equipeId];
 
   if (!equipe) {
+    majMeta("name", "robots", "noindex"); // une équipe inconnue ne doit pas être indexée
     pageEquipe.innerHTML = `
       <section class="section">
         <h1>Équipe introuvable</h1>
@@ -464,14 +530,24 @@ if (pageEquipe) {
       </section>`;
   } else {
     // Titre, description et aperçu de partage propres à l'équipe
-    const titre = `${equipe.nom} (${sport.nom}) — Raphaël, photographe`;
-    const description = `${equipe.nom} en photos et vidéos : matchs, Media Day et présentations d'équipement, par Raphaël, photographe ${sport.nom.toLowerCase()}.`;
+    const titre = `${equipe.nom} en photos (${sport.nom}) — Raphaël, photographe`;
+    const description = `Photos de ${equipe.nom} (${sport.nom.toLowerCase()}) par Raphaël, photographe sport dans le Val-d'Oise et en Île-de-France : matchs, actions et ambiance.`;
     const image = couvertureEquipe(sportId, equipeId, grande);
+    // Adresse de référence de la page (sans paramètre parasite)
+    const adresse = new URL(`${lienEquipe(sportId, equipeId)}`, location.href).href;
     document.title = titre;
     majMeta("name", "description", description);
+    majLienCanonique(adresse);
+    ajouterJsonLd({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        ["Accueil", "index.html"], ["Sport", "sport.html"], [equipe.nom, adresse]
+      ].map(([name, lien], i) => ({ "@type": "ListItem", position: i + 1, name, item: new URL(lien, location.href).href }))
+    });
     majMeta("property", "og:title", titre);
     majMeta("property", "og:description", description);
-    majMeta("property", "og:url", location.href);
+    majMeta("property", "og:url", adresse);
     majMeta("name", "twitter:title", titre);
     majMeta("name", "twitter:description", description);
     if (image) {
@@ -487,7 +563,7 @@ if (pageEquipe) {
         .map(eId => carteEquipe(sId, eId)));
 
     pageEquipe.innerHTML = `
-      <section class="hero"${styleFond(couvertureEquipe(sportId, equipeId, grande))}>
+      <section class="hero"${styleFond(couvertureSource(sportId, equipeId), grande)}>
         <nav class="fil" aria-label="Fil d'Ariane">
           <a href="sport.html">Sport</a> › <a href="sport.html#${sportId}">${sport.nom}</a> › <span>${equipe.nom}</span>
         </nav>
@@ -620,3 +696,6 @@ if (booking) {
     });
   }
 }
+
+// ===== Fonds en photo : vérification des versions légères (voir verifierFonds) =====
+verifierFonds();

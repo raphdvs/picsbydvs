@@ -1,0 +1,5 @@
+# Autorise tous les moteurs de recherche à explorer le site
+User-agent: *
+Allow: /
+
+Sitemap: https://raphdvs.github.io/picsbydvs/sitemap.xml

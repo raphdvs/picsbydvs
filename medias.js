@@ -4,17 +4,20 @@
 //  des avis, des questions fréquentes et le fil Instagram
 // =====================================================
 
-// ----- Images optimisées (WebP) -----
-// Laisse sur false tant que tu n'as pas lancé optimiser-images.sh.
-// Une fois le script lancé, passe à true : le site utilisera alors
-// automatiquement les versions légères de tes photos.
+// ----- Images optimisées -----
+// true : le site affiche les versions légères de tes photos (chargement bien plus rapide).
+// Après avoir ajouté des photos, lance une fois (dans PowerShell, dossier du site) :
+//     powershell -ExecutionPolicy Bypass -File optimiser-images.ps1
+// Si une version légère manque, la photo d'origine s'affiche quand même.
 //
 // Convention de nommage (créée par le script, à ne pas écrire à la main) :
 //   photo d'origine : images/soa/DSC05408.jpg
-//   vignette 800 px : images/soa/opti/DSC05408-800.webp   (galeries, cartes)
-//   grande 2000 px  : images/soa/opti/DSC05408-2000.webp  (agrandissement, bandeaux)
+//   vignette 800 px : images/soa/opti/DSC05408-800.jpg    (galeries, cartes)
+//   grande 2000 px  : images/soa/opti/DSC05408-2000.jpg   (agrandissement, bandeaux)
 // Les images en ligne (https://...) et les vidéos ne sont pas concernées.
-const IMAGES_OPTIMISEES = false;
+const IMAGES_OPTIMISEES = true;
+// "jpg" avec optimiser-images.ps1 (Windows), "webp" avec optimiser-images.sh (ImageMagick)
+const FORMAT_OPTIMISE = "jpg";
 
 // ----- Sports et équipes -----
 // L'identifiant (à gauche) : minuscules, sans espace ni accent.
