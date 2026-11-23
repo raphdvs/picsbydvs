@@ -19,7 +19,7 @@
    16. Avis clients
    17. Questions fréquentes (accordéon)
    18. Fil Instagram
-   19. Apparition au défilement
+   19. Apparition au défilement, transition entre les pages
    20. Mobile (≤ 800 px)
    ===================================================== */
 
@@ -438,6 +438,20 @@ a.client:hover { transform: translateY(-2px); border-color: var(--ciel); }
   transition-delay: var(--delai, 0ms);
 }
 .anime .apparition.visible { opacity: 1; transform: none; }
+
+/* Transition entre les pages : l'ancienne page s'efface, la nouvelle apparaît
+   en remontant légèrement. L'en-tête reste en place.
+   Fonctionne sur Chrome, Edge et Safari récents ; ailleurs, les pages
+   s'ouvrent normalement, sans animation. Désactivée si l'appareil demande
+   moins d'animations. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  .site-header { view-transition-name: entete; }
+  ::view-transition-old(root) { animation: page-sortie .25s ease-in both; }
+  ::view-transition-new(root) { animation: page-entree .4s ease-out both; }
+}
+@keyframes page-sortie { to { opacity: 0; } }
+@keyframes page-entree { from { opacity: 0; transform: translateY(16px); } }
 
 /* Animations réduites à la demande de l'appareil */
 @media (prefers-reduced-motion: reduce) {
